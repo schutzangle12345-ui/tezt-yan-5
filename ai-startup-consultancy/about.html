@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | tezt-yan-5 — AI Startup Consultancy</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Archivo:wght@800;900&display=swap');
+
+        :root {
+            --color-primary: #0066FF;
+            --color-primary-dark: #0052CC;
+            --color-background: #000000;
+            --color-surface: #111111;
+            --color-text: #FFFFFF;
+            --color-text-muted: #888888;
+            --color-border: #222222;
+            --color-accent: #33FF00;
+            --font-sans: 'Inter', sans-serif;
+            --font-heading: 'Archivo', sans-serif;
+            --radius-pill: 9999px;
+            --radius-card: 32px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--color-background);
+            color: var(--color-text);
+            font-family: var(--font-sans);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-family: var(--font-heading);
+            line-height: 1.05;
+            text-transform: uppercase;
+            letter-spacing: -0.04em;
+        }
+
+        h1 { font-size: clamp(3.5rem, 10vw, 7rem); margin-bottom: 2rem; }
+        h2 { font-size: clamp(2.5rem, 6vw, 4.5rem); margin-bottom: 1.5rem; }
+        h3 { font-size: clamp(1.5rem, 3vw, 2.25rem); margin-bottom: 1rem; }
+
+        p {
+            font-size: 1.125rem;
+            color: var(--color-text-muted);
+            max-width: 600px;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .logo {
+            text-decoration: none;
+            color: var(--color-text);
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--color-text);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-primary);
+        }
+
+        .cta-button {
+            background-color: var(--color-primary);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: var(--radius-pill);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background-color 0.2s, transform 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background-color: var(--color-primary-dark);
+            transform: scale(1.02);
+        }
+
+        /* Sections */
+        section {
+            padding: 8rem 2rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* Hero Styling (Asymmetric) */
+        .about-hero {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: center;
+            padding-top: 12rem;
+        }
+
+        .hero-visual {
+            background-color: var(--color-surface);
+            border-radius: var(--radius-card);
+            aspect-ratio: 4/5;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--color-border);
+        }
+
+        .hero-visual::after {
+            content: "AI FOUNDRY";
+            font-family: var(--font-heading);
+            font-size: 4rem;
+            color: var(--color-border);
+            transform: rotate(-90deg);
+        }
+
+        .accent-pill {
+            display: inline-block;
+            background-color: var(--color-accent);
+            color: var(--color-background);
+            padding: 0.4rem 1rem;
+            border-radius: var(--radius-pill);
+            font-weight: 800;
+            font-size: 0.75rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        /* Content Blocks */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .stat-card {
+            background-color: var(--color-surface);
+            padding: 3rem;
+            border-radius: var(--radius-card);
+            border: 1px solid var(--color-border);
+        }
+
+        .stat-card h3 {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-primary);
+        }
+
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .philosophy-card {
+            background-color: var(--color-surface);
+            padding: 4rem;
+            border-radius: var(--radius-card);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            min-height: 450px;
+            border: 1px solid var(--color-border);
+        }
+
+        .philosophy-card.dark {
+            background-color: var(--color-primary);
+        }
+
+        .philosophy-card.dark h3,
+        .philosophy-card.dark p {
+            color: white;
+        }
+
+        /* Use Case Badges */
+        .badge-wall {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .badge {
+            background-color: transparent;
+            border: 1px solid var(--color-border);
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-pill);
+            font-size: 0.9rem;
+            color: var(--color-text);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--color-border);
+            padding: 6rem 2rem 4rem;
+            background-color: var(--color-background);
+        }
+
+        .footer-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr repeat(2, 1fr);
+            gap: 4rem;
+        }
+
+        .footer-logo { margin-bottom: 1.5rem; display: block; }
+
+        .footer-links h4 {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: var(--color-text-muted);
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-primary);
+        }
+
+        .footer-bottom {
+            max-width: 1300px;
+            margin: 4rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid var(--color-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--color-text-muted);
+            font-size: 0.875rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-icons svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--color-text-muted);
+            transition: fill 0.2s;
+        }
+
+        .social-icons a:hover svg {
+            fill: var(--color-primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .about-hero {
+                grid-template-columns: 1fr;
+                padding-top: 8rem;
+            }
+            .hero-visual {
+                order: -1;
+                aspect-ratio: 16/9;
+            }
+            .philosophy-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
+            section { padding: 4rem 1.5rem; }
+            h1 { font-size: 3.5rem; }
+        }
+    </style>
+  <base href="/ai-startup-consultancy/" />
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">
+            <span style="font-weight:700;font-size:1.25rem">tezt-yan-5</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="auth.html">Sign In</a>
+        </div>
+        <a href="index.html#contact" class="cta-button">Book Call</a>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="about-hero">
+            <div class="hero-content">
+                <span class="accent-pill">Our Mission</span>
+                <h1>WE BUILD THE ENGINE, NOT THE HYPE.</h1>
+                <p>tezt-yan-5 is an elite AI startup consultancy for founders, CTOs, and venture studios who are tired of generic playbooks and shiny demos that don't scale. We bridge the gap between technical AI nuance and aggressive GTM strategy.</p>
+            </div>
+            <div class="hero-visual">
+                <!-- Visual element placeholder -->
+            </div>
+        </section>
+
+        <!-- Problems We Solve -->
+        <section>
+            <div style="max-width: 800px">
+                <span class="accent-pill" style="background-color: var(--color-primary); color: white;">The Gap</span>
+                <h2>WHY WE EXIST</h2>
+                <p style="margin-bottom: 2rem;">Generic startup advice ignores the specific infrastructure, data sovereignty, and inference cost challenges of AI. This leads to beautiful pitch decks but unworkable products.</p>
+                <p>We provide the ongoing advisory that combines Go-To-Market execution with AI technical depth—so founders are never alone when the complexity hits.</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>01</h3>
+                    <p style="color: var(--color-text); font-weight: 600;">Narrowing the ICP</p>
+                    <p>We stop founders from chasing shiny demos and start building for a specific, painful problem.</p>
+                </div>
+                <div class="stat-card">
+                    <h3>02</h3>
+                    <p style="color: var(--color-text); font-weight: 600;">Pricing & Offers</p>
+                    <p>Moving from usage-based experiments to repeatable, profitable enterprise packaging.</p>
+                </div>
+                <div class="stat-card">
+                    <h3>03</h3>
+                    <div style="background: var(--color-accent); height: 4px; width: 40px; margin-bottom: 1rem;"></div>
+                    <p style="color: var(--color-text); font-weight: 600;">Delivery & Scale</p>
+                    <p>Building the playbooks so the business grows without everything depending on the founder.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Philosophy -->
+        <section>
+            <h2>THE PILLARS OF TEZT-YAN-5</h2>
+            <div class="philosophy-grid">
+                <div class="philosophy-card dark">
+                    <h3>ENGINEERING-FIRST GTM</h3>
+                    <p>We believe sales strategy for AI products must be rooted in technical reality. No over-promising on model capabilities; just results that scale.</p>
+                </div>
+                <div class="philosophy-card">
+                    <h3>DATA STRATEGY AS A MOAT</h3>
+                    <p>A wrapper is not a business. We help you design data flywheels that make your AI startup defensible against Big Tech and incumbents.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Use Cases -->
+        <section>
+            <span class="accent-pill">Our Expertise</span>
+            <h2>SPECIALIZED ADVISORY</h2>
+            <p>From idea-stage founders to Series A scaling, we provide fractional AI advisory across all verticals.</p>
+            
+            <div class="badge-wall">
+                <span class="badge">SaaS Products</span>
+                <span class="badge">Data Platforms</span>
+                <span class="badge">Marketplaces</span>
+                <span class="badge">Internal Tooling</span>
+                <span class="badge">Venture Studios</span>
+                <span class="badge">Series A Growth</span>
+                <span class="badge">Bootstrapped Founders</span>
+                <span class="badge">CTO Advisory</span>
+            </div>
+        </section>
+
+        <!-- Contact / CTA -->
+        <section style="text-align: center; border-top: 1px solid var(--color-border);">
+            <h2 style="margin-bottom: 1rem;">READY TO SCALE?</h2>
+            <p style="margin: 0 auto 3rem auto;">If you're building the future of AI, let's talk about how to make it repeatable.</p>
+            <div style="background: var(--color-surface); padding: 4rem; border-radius: var(--radius-card); border: 1px solid var(--color-border); max-width: 600px; margin: 0 auto;">
+                <h3 style="color: var(--color-accent); margin-bottom: 0.5rem;">DIRECT ACCESS</h3>
+                <p style="color: white; font-weight: 600; margin-bottom: 0.5rem;">hello@tes.test</p>
+                <p>123 AI Innovation Way, San Francisco, CA</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <a href="index.html" class="footer-logo">
+                    <span style="font-weight:700;font-size:1.5rem; color: var(--color-text)">tezt-yan-5</span>
+                </a>
+                <p>Premier AI Startup Consultancy. Accelerating the transition from prototype to repeatable sales for the next generation of founders.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Platform</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="auth.html">Client Portal</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div>copyright © 2026 tezt-yan-5</div>
+            <div class="social-icons">
+                <a href="#">
+                    <svg viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                </a>
+                <a href="#">
+                    <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
